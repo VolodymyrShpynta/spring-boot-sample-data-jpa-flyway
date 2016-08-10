@@ -1,0 +1,19 @@
+server:
+  # all REST services have prefix /spring-boot-sample
+  contextPath: /spring-boot-sample
+  port: 8081
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+  h2: console.enabled
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        show_sql: true
+        cache:
+          use_second_level_cache: false
+          use_structured_entities: true
+        generate_statistics: false
+    hibernate:
+      ddl-auto: none
