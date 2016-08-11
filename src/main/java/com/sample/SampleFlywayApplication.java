@@ -1,10 +1,10 @@
-package sample.flyway;
+package com.sample;
 
+import com.sample.repositories.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import sample.flyway.repositories.EmployeeRepository;
 
 @SpringBootApplication
 public class SampleFlywayApplication implements CommandLineRunner {

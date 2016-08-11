@@ -1,4 +1,4 @@
-package sample.flyway.entity;
+package com.sample.entity;
 
 import lombok.*;
 
@@ -13,8 +13,8 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "EMPLOYEE")
-public class Employee {
+@Table(name = "STUDENT")
+public class Student {
 
     @Id
     @GeneratedValue
@@ -26,13 +26,6 @@ public class Employee {
 
     @Column(name = "LAST_NAME")
     private String lastName;
-
-    @Column(name = "DESCRIPTION")
-    private String description;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ADDRESS_ID")
-    private Address address;
 
 //    @OneToOne(fetch=FetchType.LAZY, optional = false, mappedBy = "employee")
 //    @Fetch(FetchMode.SELECT)

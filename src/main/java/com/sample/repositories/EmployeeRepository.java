@@ -1,8 +1,8 @@
-package sample.flyway.repositories;
+package com.sample.repositories;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import sample.flyway.entity.Employee;
+import com.sample.entity.Employee;
 
 import java.util.List;
 

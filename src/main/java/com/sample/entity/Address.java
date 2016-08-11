@@ -1,4 +1,4 @@
-package sample.flyway.entity;
+package com.sample.entity;
 
 import lombok.*;
 
