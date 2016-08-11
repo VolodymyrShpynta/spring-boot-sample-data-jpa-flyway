@@ -8,3 +8,7 @@ INSERT INTO EMPLOYEE (ID, FIRST_NAME, LAST_NAME, DESCRIPTION, ADDRESS_ID) VALUES
 INSERT INTO STUDENT (ID, FIRST_NAME, LAST_NAME, META_DATA) VALUES
   (1, 'Mike', 'Ivanov', 'Mike metadata'),
   (2, 'Bob', 'Petrov', 'Bob metadata');
+
+INSERT INTO LECTURER (ID, FIRST_NAME, LAST_NAME, META_DATA) VALUES
+  (1, 'Bill', 'Ivanov', 'Bill metadata'),
+  (2, 'Frank', 'Petrov', 'Frank metadata');

@@ -1,7 +1,9 @@
 package com.sample;
 
+import com.sample.entity.Lecturer;
 import com.sample.entity.Student;
 import com.sample.repositories.EmployeeRepository;
+import com.sample.repositories.LecturerRepository;
 import com.sample.repositories.StudentRepository;
 import org.hamcrest.MatcherAssert;
 import org.junit.Test;
@@ -40,6 +42,9 @@ public class SampleFlywayApplicationTests {
     @Autowired
     StudentRepository studentRepository;
 
+    @Autowired
+    LecturerRepository lecturerRepository;
+
     @Test
     public void testDefaultSettings() throws Exception {
         assertThat(this.jdbcTemplate.queryForObject("SELECT COUNT(*) from EMPLOYEE", Integer.class), is(2));
@@ -63,6 +68,16 @@ public class SampleFlywayApplicationTests {
         MatcherAssert.assertThat(students.size(), is(1));
         MatcherAssert.assertThat(students.get(0).getLastName(), is("Ivanov"));
         MatcherAssert.assertThat(students.get(0).getLobHolder().getMetaData(), is("Mike metadata"));
+    }
+
+    @Test
+    @Transactional
+    public void testLazyLoadingLecturer() {
+        List<Lecturer> lecturers = lecturerRepository.findByFirstName("Bill");
+        MatcherAssert.assertThat(lecturers, is(notNullValue()));
+        MatcherAssert.assertThat(lecturers.size(), is(1));
+        MatcherAssert.assertThat(lecturers.get(0).getLastName(), is("Ivanov"));
+        MatcherAssert.assertThat(lecturers.get(0).getLobHolder().getMetaData(), is("Bill metadata"));
     }
 
 }
