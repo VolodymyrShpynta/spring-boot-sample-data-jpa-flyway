@@ -19,7 +19,7 @@ CREATE TABLE student (
   id         BIGINT      NOT NULL AUTO_INCREMENT,
   first_name VARCHAR(60) NOT NULL,
   last_name  VARCHAR(40) NOT NULL,
-  meta_data  VARCHAR(60),
+  meta_data  VARCHAR(60) NOT NULL,
   PRIMARY KEY (id)
 );
 
