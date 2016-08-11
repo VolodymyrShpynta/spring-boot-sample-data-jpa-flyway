@@ -1,7 +1,6 @@
 package com.sample.entity;
 
 import lombok.*;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
@@ -11,15 +10,15 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "LECTURER")
+@Table(name = "lecturer")
 public class LecturerLobHolder {
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "id")
     @Basic(optional = false)
     private long id;
 
     @Lob
-    @Column(name = "META_DATA")
+    @Column(name = "meta_data")
     private String metaData;
 }

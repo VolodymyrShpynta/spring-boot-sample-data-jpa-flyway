@@ -11,11 +11,11 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "STUDENT")
+@Table(name = "student")
 public class StudentLobHolder {
 
     @Id
-    @Column(name = "ID", nullable = false)
+    @Column(name = "id", nullable = false)
     @GeneratedValue(generator = "gen")
     @GenericGenerator(name = "gen", strategy = "foreign",
             parameters = @org.hibernate.annotations.Parameter(name = "property", value = "student"))
@@ -23,7 +23,7 @@ public class StudentLobHolder {
     private long id;
 
     @Lob
-    @Column(name = "META_DATA")
+    @Column(name = "meta_data")
     private String metaData;
 
     @OneToOne(cascade = CascadeType.ALL)

@@ -1,11 +1,11 @@
 package com.sample;
 
-import com.sample.entity.Lecturer;
-import com.sample.entity.Student;
+import com.sample.entity.*;
 import com.sample.repositories.EmployeeRepository;
 import com.sample.repositories.LecturerRepository;
 import com.sample.repositories.StudentRepository;
 import org.hamcrest.MatcherAssert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,6 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
-import com.sample.entity.Employee;
 
 import java.util.List;
 
@@ -70,6 +69,22 @@ public class SampleFlywayApplicationTests {
         MatcherAssert.assertThat(students.get(0).getLobHolder().getMetaData(), is("Mike metadata"));
     }
 
+    @Ignore
+    @Test
+    @Transactional
+    public void testCreateStudent() {
+        Student student = Student.builder()
+                .firstName("Student First Name 1")
+                .lastName("Student Last Name 1")
+                .lobHolder(StudentLobHolder.builder()
+                        .metaData("Student 1 metadata")
+                        .build())
+                .build();
+
+        Student savedStudent = studentRepository.save(student);
+        System.out.println(savedStudent.getId());
+    }
+
     @Test
     @Transactional
     public void testLazyLoadingLecturer() {
@@ -78,6 +93,22 @@ public class SampleFlywayApplicationTests {
         MatcherAssert.assertThat(lecturers.size(), is(1));
         MatcherAssert.assertThat(lecturers.get(0).getLastName(), is("Ivanov"));
         MatcherAssert.assertThat(lecturers.get(0).getLobHolder().getMetaData(), is("Bill metadata"));
+    }
+
+    @Ignore
+    @Test
+    @Transactional
+    public void testCreateLecturer() {
+        Lecturer lecturer = Lecturer.builder()
+                .firstName("Lecturer First Name 1")
+                .lastName("Lecturer Last Name 1")
+                .lobHolder(LecturerLobHolder.builder()
+                        .metaData("Lecturer 1 metadata")
+                        .build())
+                .build();
+
+        Lecturer savedLecturer = lecturerRepository.save(lecturer);
+        System.out.println(savedLecturer.getId());
     }
 
 }

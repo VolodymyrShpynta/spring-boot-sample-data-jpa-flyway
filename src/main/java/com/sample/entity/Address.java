@@ -13,16 +13,16 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "ADDRESS")
+@Table(name = "address")
 public class Address {
     @Id
     @GeneratedValue
-    @Column(name = "ID")
+    @Column(name = "id")
     private Long id;
 
-    @Column(name = "STREET")
+    @Column(name = "street")
     private String street;
 
-    @Column(name = "PHONE")
+    @Column(name = "phone")
     private String phone;
 }

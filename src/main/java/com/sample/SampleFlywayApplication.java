@@ -20,5 +20,4 @@ public class SampleFlywayApplication implements CommandLineRunner {
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(SampleFlywayApplication.class, args);
 	}
-
 }
