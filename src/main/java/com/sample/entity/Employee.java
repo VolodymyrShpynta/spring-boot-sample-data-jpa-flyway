@@ -33,8 +33,4 @@ public class Employee {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ADDRESS_ID")
     private Address address;
-
-//    @OneToOne(fetch=FetchType.LAZY, optional = false, mappedBy = "employee")
-//    @Fetch(FetchMode.SELECT)
-//    private LobHolder bitmapHolder;
 }

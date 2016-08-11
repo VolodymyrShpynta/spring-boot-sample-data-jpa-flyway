@@ -1,6 +1,8 @@
 package com.sample.entity;
 
 import lombok.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 
@@ -27,7 +29,7 @@ public class Student {
     @Column(name = "LAST_NAME")
     private String lastName;
 
-//    @OneToOne(fetch=FetchType.LAZY, optional = false, mappedBy = "employee")
-//    @Fetch(FetchMode.SELECT)
-//    private LobHolder bitmapHolder;
+    @OneToOne(fetch=FetchType.LAZY, optional = false, mappedBy = "student")
+    @Fetch(FetchMode.SELECT)
+    private StudentLobHolder lobHolder;
 }

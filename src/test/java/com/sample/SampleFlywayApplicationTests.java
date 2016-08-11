@@ -47,7 +47,7 @@ public class SampleFlywayApplicationTests {
 
     @Test
     @Transactional
-    public void testLasyLoading() {
+    public void testLazyLoadingEmployee() {
         List<Employee> employees = employeeRepository.findByFirstName("Ivan");
         MatcherAssert.assertThat(employees, is(notNullValue()));
         MatcherAssert.assertThat(employees.size(), is(1));
@@ -57,12 +57,12 @@ public class SampleFlywayApplicationTests {
 
     @Test
     @Transactional
-    public void testLasyLoadingStudent() {
+    public void testLazyLoadingStudent() {
         List<Student> students = studentRepository.findByFirstName("Mike");
         MatcherAssert.assertThat(students, is(notNullValue()));
         MatcherAssert.assertThat(students.size(), is(1));
         MatcherAssert.assertThat(students.get(0).getLastName(), is("Ivanov"));
-//        assertThat(employees.get(0).getMetaData(), is("Some metadata"));
+        MatcherAssert.assertThat(students.get(0).getLobHolder().getMetaData(), is("Mike metadata"));
     }
 
 }
