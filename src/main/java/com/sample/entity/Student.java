@@ -29,7 +29,11 @@ public class Student {
     @Column(name = "last_name")
     private String lastName;
 
-    @OneToOne(fetch=FetchType.LAZY, optional = false, mappedBy = "student")
+    /*
+        Fake one-to-one bidirectional mapping to achieve lazy loading of LOBs
+        (There is a bug in lazy loading of LOBs)
+     */
+    @OneToOne(fetch = FetchType.LAZY, optional = false, mappedBy = "student")
     @Fetch(FetchMode.SELECT)
     private StudentLobHolder lobHolder;
 }

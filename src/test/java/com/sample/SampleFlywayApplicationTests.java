@@ -4,7 +4,6 @@ import com.sample.entity.*;
 import com.sample.repositories.EmployeeRepository;
 import com.sample.repositories.LecturerRepository;
 import com.sample.repositories.StudentRepository;
-import org.hamcrest.MatcherAssert;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,6 +22,7 @@ import java.util.List;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -53,9 +53,9 @@ public class SampleFlywayApplicationTests {
     @Transactional
     public void testLazyLoadingEmployee() {
         List<Employee> employees = employeeRepository.findByFirstName("Ivan");
-        MatcherAssert.assertThat(employees, is(notNullValue()));
-        MatcherAssert.assertThat(employees.size(), is(1));
-        MatcherAssert.assertThat(employees.get(0).getLastName(), is("Ivanov"));
+        assertThat(employees, is(notNullValue()));
+        assertThat(employees.size(), is(1));
+        assertThat(employees.get(0).getLastName(), is("Ivanov"));
         assertThat(employees.get(0).getAddress().getStreet(), is("Bozhenko"));
     }
 
@@ -63,10 +63,38 @@ public class SampleFlywayApplicationTests {
     @Transactional
     public void testLazyLoadingStudent() {
         List<Student> students = studentRepository.findByFirstName("Mike");
-        MatcherAssert.assertThat(students, is(notNullValue()));
-        MatcherAssert.assertThat(students.size(), is(1));
-        MatcherAssert.assertThat(students.get(0).getLastName(), is("Ivanov"));
-        MatcherAssert.assertThat(students.get(0).getLobHolder().getMetaData(), is("Mike metadata"));
+        assertThat(students, is(notNullValue()));
+        assertThat(students.size(), is(1));
+        assertThat(students.get(0).getLastName(), is("Ivanov"));
+        assertThat(students.get(0).getLobHolder().getMetaData(), is("Mike metadata"));
+    }
+
+    @Test
+    @Transactional
+    public void testLazyLoadingLecturer() {
+        List<Lecturer> lecturers = lecturerRepository.findByFirstName("Bill");
+        assertThat(lecturers, is(notNullValue()));
+        assertThat(lecturers.size(), is(1));
+        assertThat(lecturers.get(0).getLastName(), is("Ivanov"));
+        assertThat(lecturers.get(0).getLobHolder().getMetaData(), is("Bill metadata"));
+    }
+
+    @Test
+    @Transactional
+    public void testCreateEmployee() {
+        Employee employee = Employee.builder()
+                .firstName("Employee First Name 1")
+                .lastName("Employee Last Name 1")
+                .description("Employee description 1")
+                .address(Address.builder()
+                        .phone("222-22-22")
+                        .street("Some street")
+                        .build())
+                .build();
+
+        Employee savedEmployee = employeeRepository.save(employee);
+        assertTrue(savedEmployee.getId() > 0);
+        assertTrue(savedEmployee.getAddress().getId() > 0);
     }
 
     @Ignore
@@ -83,16 +111,6 @@ public class SampleFlywayApplicationTests {
 
         Student savedStudent = studentRepository.save(student);
         System.out.println(savedStudent.getId());
-    }
-
-    @Test
-    @Transactional
-    public void testLazyLoadingLecturer() {
-        List<Lecturer> lecturers = lecturerRepository.findByFirstName("Bill");
-        MatcherAssert.assertThat(lecturers, is(notNullValue()));
-        MatcherAssert.assertThat(lecturers.size(), is(1));
-        MatcherAssert.assertThat(lecturers.get(0).getLastName(), is("Ivanov"));
-        MatcherAssert.assertThat(lecturers.get(0).getLobHolder().getMetaData(), is("Bill metadata"));
     }
 
     @Ignore

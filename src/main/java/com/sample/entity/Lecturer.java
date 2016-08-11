@@ -29,7 +29,11 @@ public class Lecturer {
     @Column(name = "last_name")
     private String lastName;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY, optional = false)
+    /*
+        Fake one-to-one unidirectional mapping to achieve lazy loading of LOBs
+        (There is a bug in lazy loading of LOBs)
+    */
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
     @Fetch(FetchMode.SELECT)
     @PrimaryKeyJoinColumn
     private LecturerLobHolder lobHolder;

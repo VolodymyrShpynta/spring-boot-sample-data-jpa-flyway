@@ -4,6 +4,11 @@ import lombok.*;
 
 import javax.persistence.*;
 
+/*
+    Fake one-to-one unidirectional mapping to achieve lazy loading of LOBs
+    (There is a bug in lazy loading of LOBs)
+*/
+
 @Entity
 @Builder
 @Getter

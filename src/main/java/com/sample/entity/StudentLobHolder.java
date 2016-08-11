@@ -5,6 +5,11 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
+/*
+    Fake one-to-one bidirectional mapping to achieve lazy loading of LOBs
+    (There is a bug in lazy loading of LOBs)
+*/
+
 @Entity
 @Builder
 @Getter
