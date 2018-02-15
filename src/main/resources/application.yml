@@ -1,6 +1,6 @@
 server:
-  # all REST services have prefix /spring-boot-sample
-  contextPath: /spring-boot-sample
+  # all REST services have prefix /spring-boot-flyway-sample
+  contextPath: /spring-boot-flyway-sample
   port: 8080
 spring:
   datasource:

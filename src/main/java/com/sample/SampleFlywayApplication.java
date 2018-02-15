@@ -14,7 +14,7 @@ public class SampleFlywayApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		System.err.println(this.repository.findAll());
+		System.err.println(this.repository.findAllEmployees());
 	}
 
 	public static void main(String[] args) throws Exception {
